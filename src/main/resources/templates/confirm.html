@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1> This is Confirm </h1>
+    <hr>
+    <h3>Transfer Summary</h3>
+    <table>
+        <tr>
+            <td>
+                From: 
+            </td>
+            <td data-th-text="${session?.form?.fromAccount}">
+
+            </td>
+        </tr>
+        <tr>
+            <td>
+                To: 
+            </td>
+            <td data-th-text="${session?.form?.toAccount}">
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Amount: 
+            </td>
+            <td data-th-text="${session?.form?.amount}">
+                
+            </td>
+        </tr>
+        <tr>
+            <td>
+                Transaction Id: 
+            </td>
+            <td data-th-text="${session?.id}">
+                
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
