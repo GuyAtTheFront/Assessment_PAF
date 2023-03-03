@@ -1,18 +1,14 @@
 package iss.nus.Assessment_PAF.controllers;
 
-import java.math.BigDecimal;
 import java.util.List;
 import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.MultiValueMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import iss.nus.Assessment_PAF.models.FormTransfer;
 import iss.nus.Assessment_PAF.models.Validation;
@@ -20,7 +16,6 @@ import iss.nus.Assessment_PAF.repositories.AccountsRepository;
 import iss.nus.Assessment_PAF.services.FundsTransferService;
 import iss.nus.Assessment_PAF.services.LogAuditService;
 import jakarta.servlet.http.HttpSession;
-import jakarta.validation.Valid;
 
 @Controller
 public class FundsTransferController {
@@ -40,7 +35,7 @@ public class FundsTransferController {
 
         String status = (String) session.getAttribute("status");
 
-            if (status.equalsIgnoreCase("submitted")) {
+            if (null != status) {
                 session.invalidate();
             }
         
@@ -80,7 +75,7 @@ public class FundsTransferController {
             transferService.fundTransfer(form.getFromId(), form.getToId(), form.getAmount());
             
             // Some issues with redis connection
-            logService.saveAuditLog(transactionId, form.getFromId(), form.getToId(), form.getAmount());
+            // logService.saveAuditLog(transactionId, form.getFromId(), form.getToId(), form.getAmount());
 
 
             // should probably invalidate session here, sigh...
